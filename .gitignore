@@ -1,0 +1,7 @@
+.a
+.lib
+.so
+.dll
+build/
+.vs/
+CMakeSettings.json
