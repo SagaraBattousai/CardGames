@@ -1,7 +1,5 @@
 #include "deckFactory.h"
 
-DeckFactory<Card>::DeckFactory()
-{}
 
 Deck<Card> DeckFactory<Card>::create()
 {

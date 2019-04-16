@@ -8,7 +8,7 @@
 int main(void)
 {
 
-  Deck<Card> deck = DeckFactory<Card>().create();
+  Deck<Card> deck = DeckFactory<Card>::create();
 
   deck.shuffle();
 

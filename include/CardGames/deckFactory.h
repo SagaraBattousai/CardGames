@@ -14,7 +14,7 @@ class DeckFactory
 {
 public:
 
-  Deck<T> create();
+  static Deck<T> create();
 
   virtual ~DeckFactory() = 0;
 
@@ -32,9 +32,7 @@ public:
   static constexpr int FACES_IN_A_DECK = 4;
   static constexpr int NUMBER_CARD_MAX = 10;
 
-  DeckFactory();
-
-  Deck<Card> create();
+  static Deck<Card> create();
 
 private:
   static void generateSuitDeck(std::vector<Card>& cards, Card::Suit suit);
