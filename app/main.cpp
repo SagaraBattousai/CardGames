@@ -2,12 +2,13 @@
 #include <string>
 #include "card.h"
 #include "deck.h"
+#include "deckFactory.h"
 
 
 int main(void)
 {
 
-  Deck deck = Deck();
+  Deck<Card> deck = DeckFactory<Card>().create();
 
   deck.shuffle();
 

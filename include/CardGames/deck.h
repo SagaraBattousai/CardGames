@@ -8,22 +8,17 @@
 
 
 #include <vector>
-#include "card.h"
 
-class DECK_API Deck
+template<class T>
+class Deck
 {
 public:
 
-  static constexpr int CARDS_IN_A_DECK = 52;
-  static constexpr int CARDS_IN_A_SUIT = 13;
-  static constexpr int SUITS_IN_A_DECK = 4;
-  static constexpr int FACES_IN_A_DECK = 4;
-  static constexpr int NUMBER_CARD_MAX = 10;
-
-
 	Deck();
 
-  Deck(std::vector<Card> cards);
+  Deck(unsigned size);
+
+  Deck(T cards[], size_t numberOfCards);
 
 	virtual ~Deck();
 
@@ -31,7 +26,7 @@ public:
 
   virtual void cut();
 
-  virtual Card draw();
+  virtual T draw();
 
   void discard();
 
@@ -40,12 +35,71 @@ public:
 
  private:
 
-	void generateSuitDeck(Card::Suit suit);
-
-  std::vector<Card> cards;
+  std::vector<T> cards;
 
   //Do I need to keep track of cards delt?
 
 	
 
 };
+
+#include <random>
+#include <chrono>
+#include <algorithm>
+
+template <class T>
+Deck<T>::Deck()
+{}
+
+template <class T>
+Deck<T>::Deck(unsigned size) : cards(size)
+{}
+
+template <class T>
+Deck<T>::Deck(T cards[], size_t numberOfCards) : cards(cards, cards + numberOfCards)
+{}
+
+template <class T>
+Deck<T>::~Deck()
+{}
+
+template <class T>
+void Deck<T>::shuffle()
+{
+  unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
+
+  std::shuffle(cards.begin(), cards.end(), std::default_random_engine(seed));
+
+}
+
+template <class T>
+void Deck<T>::cut()
+{
+  size_t middle = cards.size() / 2;
+
+  for (size_t i = cards.size() - 1; i >= middle; i--)
+  {
+    T temp = cards.back();
+    cards.pop_back();
+    cards.insert(cards.begin(), temp);
+  }
+}
+
+template <class T>
+T Deck<T>::draw()
+{
+  T card = cards.back();
+  cards.pop_back();
+  return card;
+}
+
+template<class T>
+void Deck<T>::discard()
+{
+}
+
+template <class T>
+bool Deck<T>::isEmpty()
+{
+  return cards.empty();
+}

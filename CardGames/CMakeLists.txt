@@ -1,6 +1,6 @@
 
-set(srcFiles card.cpp deck.cpp)
-set(headerFiles ../include/CardGames/card.h ../include/CardGames/deck.h)
+set(srcFiles card.cpp deckFactory.cpp)
+set(headerFiles ../include/CardGames/card.h ../include/CardGames/deck.h ../include/CardGames/deckFactory.h)
 
 
 add_library(CardGames SHARED ${srcFiles} ${headerFiles})

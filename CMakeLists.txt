@@ -5,7 +5,7 @@ if(${CMAKE_VERSION} VERSION_LESS 3.12)
 endif()
 
 project(CardGames  
-        VERSION 0.0
+        VERSION 1.0.0
         DESCRIPTION "Card Games"
         LANGUAGES CXX)
 
